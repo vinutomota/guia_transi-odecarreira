@@ -582,3 +582,30 @@ Packer.toBuffer(doc).then(buffer => {
   console.error(err);
   process.exit(1);
 });
+// ... continuação do apêndice
+    bullet([bold("Dashboard: "), run("Um painel visual interativo que consolida métricas e indicadores-chave de desempenho (KPIs) para monitoramento rápido e tomada de decisão.")]),
+    spacer()
+  ];
+}
+
+// ─── GERAR ARQUIVO FINAL ──────────────────────────────────────────────────────
+const doc = new Document({
+  sections: [{
+    properties: {},
+    children: [
+      ...coverPage(),
+      ...titlesPage(),
+      ...introChapter(),
+      ...chapter1(),
+      ...chapter2(),
+      ...chapter3(),
+      ...conclusion(),
+      ...appendix()
+    ],
+  }],
+});
+
+Packer.toBuffer(doc).then((buffer) => {
+  fs.writeFileSync("Do_Zero_Aos_Dados.docx", buffer);
+  console.log("E-book e Guia gerados com sucesso!");
+});
