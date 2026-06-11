@@ -1,13 +1,12 @@
 const {
   Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType,
-  LevelFormat, PageBreak, BorderStyle, ShadingType, TableRow, TableCell,
-  Table, WidthType
+  BorderStyle, ShadingType, PageBreak
 } = require('docx');
 const fs = require('fs');
 
 // ─── COLORS ───────────────────────────────────────────────────────────────────
-const BLUE   = "1A56A0";
-const TEAL   = "0D8A7C";
+const BLUE  = "1A56A0";
+const TEAL  = "0D8A7C";
 const ACCENT = "E87722";
 const LIGHT_BLUE_BG = "EBF4FB";
 const LIGHT_TEAL_BG = "E6F5F3";
@@ -97,14 +96,6 @@ function callout(runs, bg = LIGHT_BLUE_BG, borderColor = BLUE) {
   });
 }
 
-function sectionDivider(color = BLUE) {
-  return new Paragraph({
-    spacing: { before: 200, after: 200 },
-    border: { bottom: { style: BorderStyle.SINGLE, size: 2, color, space: 1 } },
-    children: []
-  });
-}
-
 // ─── COVER PAGE ───────────────────────────────────────────────────────────────
 function coverPage() {
   return [
@@ -172,7 +163,7 @@ function introChapter() {
       run(". Mas, ao contrário do petróleo bruto, o valor real dos dados não está na sua posse — está na capacidade humana de transformá-los em insights estratégicos, decisões inteligentes e produtos que mudam vidas.")
     ]),
     spacer(),
-    body("Pense no volume de dados que uma grande rede de supermercados gera em um único dia: quais produtos foram vendidos, em quais horários, para quais perfis de consumidores, sob quais condições climáticas. Esse volume imenso de informação é inútil sem alguém que saiba lê-lo, interpretá-lo e, mais importante, transformá-lo em ação. É exatamente esse alguém que o mercado está buscando — e pagando muito bem para encontrar."),
+    body("Pense no volume de dados que uma grande rede de supermercados gera em um único dia: quais produtos foram vendidos, in quais horários, para quais perfis de consumidores, sob quais condições climáticas. Esse volume imenso de informação é inútil sem alguém que saiba lê-lo, interpretá-lo e, mais importante, transformá-lo em ação. É exatamente esse alguém que o mercado está buscando — e pagando muito bem para encontrar."),
     spacer(),
     body("Se você está lendo este livro, provavelmente sente que algo está mudando ao seu redor. Talvez você trabalhe em saúde, educação, varejo, logística ou finanças, e perceba que cada vez mais decisões são tomadas com base em dados. Talvez tenha ouvido falar em salários atrativos na área de tecnologia e se perguntado se esse caminho também é possível para você. A resposta curta é: sim, é possível — e mais do que isso, é provável que você já tenha mais do que precisa para começar."),
     spacer(),
@@ -217,7 +208,7 @@ function chapter1() {
       run(" vêm de outras áreas de formação. Isso não é exceção — é a regra. O mercado já normalizou e, mais do que isso, valoriza a diversidade de bagagem que esses profissionais trazem.")
     ], LIGHT_TEAL_BG, TEAL),
     spacer(),
-    body("Áreas como Varejo, Educação e Saúde estão contratando massivamente para modernizar suas operações. Uma rede de hospitais precisa de analistas que entendam tanto de SQL quanto de protocolos médicos. Uma rede de escolas precisa de cientistas de dados que compreendam pedagogia. Um marketplace de moda precisa de pessoas que falem a língua tanto do negócio quanto dos números — e é exatamente aí que profissionais em transição têm vantagem competitiva."),
+    body("Áreas como Varejo, Educação e Saúde estão contratando massivamente para modernizar suas operações. Uma rede de hospitais precisa de analistas que entendam tanto de SQL quanto de profissionais médicos. Uma rede de escolas precisa de cientistas de dados que compreendam pedagogia. Um marketplace de moda precisa de pessoas que falem a língua tanto do negócio quanto dos números — e é exatamente aí que profissionais em transição têm vantagem competitiva."),
     spacer(),
     h2("Quem está fazendo essa transição?"),
     body("O perfil de quem migra para dados é muito mais diverso do que a maioria das pessoas imagina. Não é só o jovem de 22 anos recém-formado em Ciências da Computação. Vejamos os grupos mais comuns:"),
@@ -393,9 +384,9 @@ function chapter3() {
     body([bold("Como superar: "), run("Construa pelo menos 3 projetos antes de começar a se candidatar a vagas. Fontes de dados públicos são perfeitas para isso: dados do IBGE, do DATASUS, do INEP, do Kaggle. Escolha temas que você conhece bem — um professor que analisa dados de evasão escolar conta uma história muito mais poderosa do que alguém que replica um projeto genérico de dataset de vinhos.")]),
     spacer(),
     h3("Desafio 5: Ignorar a Inteligência Artificial como Aliada"),
-    body("Em 2024 e 2025, o mercado mudou de forma irreversível: a IA generativa tornou-se uma ferramenta de produtividade obrigatória para profissionais de dados. Quem ainda não usa IA para acelerar análises, gerar código e interpretar resultados está trabalhando com uma mão amarrada nas costas."),
+    body("Em 2024 e 2025, o mercado mudou de forma irreversível: a IA generativa tornou-se uma ferramenta de produtividade obrigatória para profissionais de dados. Quem ainda não usa IA para acessar análises, gerar código e interpretar resultados está trabalhando com uma mão amarrada nas costas."),
     spacer(),
-    body([bold("Como superar: "), run("Incorpore o uso de ferramentas como Claude, ChatGPT e GitHub Copilot no seu fluxo de trabalho desde o início. Use IA para tirar dúvidas de código, gerar explicações de conceitos estatísticos, criar templates de relatórios e depurar erros. A competência não é 'saber tudo' — é saber usar os melhores recursos disponíveis.")]),
+    body([bold("Como superar: "), run("Incorpore o uso de ferramentas como Claude, ChatGPT e Gemini no seu fluxo de trabalho desde o início. Use IA para tirar dúvidas de código, gerar explicações de conceitos estatísticos, criar templates de relatórios e depurar erros. A competência não é 'saber tudo' — é saber usar os melhores recursos disponíveis.")]),
     spacer(),
     h2("Os 7 Mandamentos do Profissional de Dados Iniciante"),
     spacer(),
@@ -443,152 +434,55 @@ function conclusion() {
   ];
 }
 
-// ─── APPENDIX ─────────────────────────────────────────────────────────────────
+// ─── APPENDIX & STUDY GUIDE ───────────────────────────────────────────────────
 function appendix() {
   return [
-    h1("Apêndice: Ferramentas de Bolso"),
+    h1("Apêndice: Guia de Estudo e Ferramentas de Bolso"),
     spacer(),
+    h2("Resumo Estruturado dos Pilares de Dados"),
+    body("Para garantir que você consolide os fundamentos ensinados neste e-book, lembre-se sempre da divisão estrutural do mercado brasileiro:"),
+    bullet([bold("O Fator Transição: "), run("Mais de metade do mercado (54,2%) é composto por pessoas que vieram de fora da tecnologia. O conhecimento que você já possui sobre saúde, varejo, finanças ou educação é metade do seu valor comercial de mercado.")]),
+    bullet([bold("A Decisão de Carreira: "), run("Não tente aprender tudo. Escolha seu caminho inicial baseado no seu perfil (Analista se você foca em decisões e negócios, Engenheiro para arquitetura de fluxos de dados, Cientista se seu forte for modelagem estatística profunda).")]),
+    
+    spacer(40),
     h2("Glossário do Iniciante — Os Termos que Você Precisa Conhecer"),
     spacer(),
     bullet([bold("BI (Business Intelligence): "), run("O processo de transformar dados brutos em informações visuais e acionáveis para a tomada de decisão empresarial. Ferramentas populares: Power BI, Tableau, Looker.")]),
-    spacer(40),
     bullet([bold("SQL (Structured Query Language): "), run("A linguagem universal para buscar, filtrar, agrupar e manipular informações em bancos de dados relacionais. É a habilidade número 1 mais solicitada em vagas de dados no Brasil.")]),
-    spacer(40),
     bullet([bold("ETL (Extract, Transform, Load): "), run("O processo de extrair dados de uma fonte, transformá-los (limpar, padronizar, enriquecer) e carregá-los em um destino — geralmente um data warehouse ou data lake.")]),
+    bullet([bold("Data Warehouse: "), run("Um repositório centralizado e estruturado de dados históricos de uma empresa, otimizado para análises estruturadas. Exemplos: BigQuery, Snowflake, Redshift.")]),
+    bullet([bold("Data Lake: "), run("Um repositório de dados brutos em seu formato original, estruturados ou não (vídeos, logs, jsons). Mais flexível, focado em exploração pura.")]),
+    bullet([bold("Machine Learning: "), run("Área da inteligência artificial que desenvolve algoritmos capazes de aprender padrões a partir de dados históricos para tomar decisões ou fazer previsões preditivas.")]),
+    bullet([bold("Pipeline de Dados: "), run("Uma sequência automatizada de processos que movem dados de um sistema a outro de forma controlada e periódica.")]),
+    bullet([bold("Dashboard: "), run("Um painel visual interativo que consolida métricas e indicadores-chave de desempenho (KPIs) para monitoramento rápido de lideranças e gerências.")]),
+
+    pgBreak(),
+
+    h2("Kit de Prompts Reutilizáveis (Seu Tutor de IA Particular)"),
+    body("Copie e cole os templates abaixo em ferramentas de IA (como ChatGPT ou Gemini) para acelerar e guiar seus estudos autônomos diários."),
+    
     spacer(40),
-    bullet([bold("Data Warehouse: "), run("Um repositório centralizado e estruturado de dados históricos de uma empresa, otimizado para análises. Exemplos: BigQuery, Snowflake, Redshift.")]),
-    spacer(40),
-    bullet([bold("Data Lake: "), run("Um repositório de dados brutos em seu formato original, estruturados ou não. Mais flexível que um data warehouse, permite análises exploratórias sem estrutura predefinida.")]),
-    spacer(40),
-    bullet([bold("Machine Learning: "), run("Área da inteligência artificial que desenvolve algoritmos capazes de aprender padrões a partir de dados históricos e fazer previsões ou classificações sobre dados novos.")]),
-    spacer(40),
-    bullet([bold("Pipeline de Dados: "), run("Uma sequência automatizada de processos que movem dados de um sistema a outro — desde a coleta até a disponibilização para análise.")]),
-    spacer(40),
-    bullet([bold("Dashboard: "), run("Um painel visual interativo que consolida as principais métricas de um negócio em um único lugar, facilitando o monitoramento e a tomada de decisão.")]),
-    spacer(40),
-    bullet([bold("KPI (Key Performance Indicator): "), run("Indicadores-chave de desempenho — as métricas mais importantes para avaliar se uma empresa ou equipe está alcançando seus objetivos.")]),
-    spacer(40),
-    bullet([bold("LGPD (Lei Geral de Proteção de Dados): "), run("A lei brasileira que regulamenta como empresas e profissionais devem coletar, armazenar, tratar e compartilhar dados pessoais. Conhecê-la é obrigatório para qualquer profissional de dados.")]),
-    spacer(40),
-    bullet([bold("Pandas: "), run("Biblioteca Python amplamente usada para manipulação e análise de dados tabulares. É a ferramenta mais utilizada por analistas e cientistas de dados no dia a dia.")]),
-    spacer(40),
-    bullet([bold("API (Application Programming Interface): "), run("Uma interface que permite que dois sistemas se comuniquem. Profissionais de dados frequentemente usam APIs para coletar dados de fontes externas como redes sociais, plataformas de e-commerce e sistemas de terceiros.")]),
-    spacer(),
-    sectionDivider(TEAL),
-    spacer(),
-    h2("Prompts Interativos — Seu Consultor de IA em Dados"),
-    body("Os prompts abaixo foram criados para que você use com ferramentas de IA generativa (como Claude ou ChatGPT) e obtenha orientações personalizadas para sua transição de carreira. Copie, adapte e use!"),
-    spacer(),
-    h3("Prompt 1: Entrevista Vocacional em Dados"),
+    h3("Prompt 1: O Explicador Didático (Conceitos Complexos)"),
     callout([
-      run("Atue como meu Conselheiro de Carreira especializado em transição para a área de dados. Conduza comigo uma entrevista vocacional estruturada para descobrir qual das três carreiras — Analista de Dados, Engenheiro de Dados ou Cientista de Dados — é mais adequada ao meu perfil atual. Faça perguntas sobre: 1) minha formação e área de experiência atual; 2) minhas habilidades técnicas existentes; 3) meus objetivos de carreira de curto e longo prazo; 4) minha tolerância a aspectos técnicos profundos; 5) o tipo de problema que mais me motiva resolver. Ao final, apresente uma recomendação de carreira com justificativa, uma trilha de estudos personalizada para os primeiros 90 dias e três tipos de projeto de portfólio que eu devo construir.")
-    ], GRAY_BG, MID_TEXT),
-    spacer(),
-    h3("Prompt 2: Tradutor de Carreira"),
+      run('Atue como um professor sênior da área de dados, conhecido por sua didática impecável. Explique o conceito de [INSERIR CONCEITO EX: "JOIN no SQL"] para um iniciante total que está migrando de carreira. Utilize: 1) Uma analogia do mundo real fora da TI; 2) Um exemplo prático aplicado a negócios; 3) Um resumo de 2 frases fixando o que realmente importa memorizar.', DARK_TEXT)
+    ], GRAY_BG, BLUE),
+
+    spacer(40),
+    h3("Prompt 2: O Criador de Desafios Técnicos (Para Portfólio)"),
     callout([
-      run("Eu venho da área de [INSIRA SUA ÁREA AQUI — ex: Saúde, Educação, Logística, Finanças]. Quais habilidades transferíveis do meu setor atual são mais valorizadas na área de dados? Me ajude a: 1) identificar as 5 principais competências da minha área que têm alto valor em dados; 2) traduzir meu currículo atual para o vocabulário de dados; 3) sugerir tipos de projeto de portfólio que aproveitem meu conhecimento de domínio; 4) criar um discurso de apresentação (elevator pitch) para usar em entrevistas, explicando por que minha transição agrega valor único.")
-    ], GRAY_BG, MID_TEXT),
-    spacer(),
-    h3("Prompt 3: Gerador de Projetos de Portfólio"),
+      run('Atue como um Tech Lead de uma grande empresa. Estou estudando para ser [Analista/Engenheiro] de Dados e quero criar um portfólio. Meu background original é na área de [INSERIR SUA ÁREA ORIGINAL EX: "Logística"]. Crie um escopo de projeto prático utilizando dados públicos que conecte a minha área antiga com o mundo dos dados, listando o problema de negócio, as perguntas chaves e as ferramentas recomendadas.', DARK_TEXT)
+    ], GRAY_BG, TEAL),
+
+    spacer(40),
+    h3("Prompt 3: O Depurador de Erros de Código"),
     callout([
-      run("Sou um profissional em transição para dados, vindo da área de [SUA ÁREA]. Meu nível técnico atual é [iniciante/intermediário]. Quero construir um projeto de portfólio que: 1) use dados públicos disponíveis gratuitamente; 2) aplique o conhecimento da minha área de origem; 3) seja relevante para empresas do setor de [SUA ÁREA OU SETOR ALVO]; 4) demonstre as habilidades de [SQL/Python/Power BI — escolha uma]. Me proponha 3 ideias de projeto com título, objetivo, fonte de dados sugerida, ferramentas a usar e o que o projeto vai demonstrar para recrutadores.")
-    ], GRAY_BG, MID_TEXT),
-    spacer(),
-    h3("Prompt 4: Simulador de Entrevista Técnica"),
-    callout([
-      run("Atue como um recrutador técnico de uma empresa de médio porte que está contratando um Analista de Dados Júnior. Conduza comigo uma entrevista simulada com 10 perguntas — misturando questões técnicas (SQL, visualização de dados, métricas) e comportamentais (resolução de problemas, comunicação de resultados). Após cada resposta minha, avalie minha resposta numa escala de 1 a 5, aponte pontos fortes e áreas de melhoria, e sugira como eu poderia ter respondido de forma mais forte. Ao final, dê um feedback geral sobre minha prontidão para o mercado.")
-    ], GRAY_BG, MID_TEXT),
-    spacer(),
-    sectionDivider(ACCENT),
-    spacer(),
-    new Paragraph({
-      alignment: AlignmentType.CENTER,
-      spacing: { before: 200, after: 200 },
-      children: [
-        new TextRun({ text: "Boa jornada. Os dados esperam por você.", font: "Arial", size: 26, bold: true, color: BLUE, italics: true })
-      ]
-    })
+      run('Atue como um mentor de programação. Estou aprendendo [SQL/Python] e meu código retornou um erro. Aqui está o código: [COLAR CÓDIGO]. Aqui está o erro: [COLAR ERRO]. Por favor, identifique o erro estrutural de forma simples, forneça o código corrigido e me dê uma boa prática para não errar isso novamente.', DARK_TEXT)
+    ], GRAY_BG, ACCENT),
+    spacer(120)
   ];
 }
 
-// ─── BUILD DOCUMENT ───────────────────────────────────────────────────────────
-const doc = new Document({
-  numbering: {
-    config: [
-      {
-        reference: "bullets",
-        levels: [{
-          level: 0, format: LevelFormat.BULLET, text: "•",
-          alignment: AlignmentType.LEFT,
-          style: { paragraph: { indent: { left: 720, hanging: 360 } } }
-        }]
-      },
-      {
-        reference: "numbers",
-        levels: [{
-          level: 0, format: LevelFormat.DECIMAL, text: "%1.",
-          alignment: AlignmentType.LEFT,
-          style: { paragraph: { indent: { left: 720, hanging: 360 } } }
-        }]
-      }
-    ]
-  },
-  styles: {
-    default: {
-      document: { run: { font: "Arial", size: 22, color: DARK_TEXT } }
-    },
-    paragraphStyles: [
-      {
-        id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 36, bold: true, font: "Arial", color: BLUE },
-        paragraph: { spacing: { before: 360, after: 180 }, outlineLevel: 0 }
-      },
-      {
-        id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 28, bold: true, font: "Arial", color: TEAL },
-        paragraph: { spacing: { before: 280, after: 120 }, outlineLevel: 1 }
-      },
-      {
-        id: "Heading3", name: "Heading 3", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 24, bold: true, font: "Arial", color: ACCENT },
-        paragraph: { spacing: { before: 200, after: 80 }, outlineLevel: 2 }
-      }
-    ]
-  },
-  sections: [{
-    properties: {
-      page: {
-        size: { width: 11906, height: 16838 }, // A4
-        margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 }
-      }
-    },
-    children: [
-      ...coverPage(),
-      ...titlesPage(),
-      ...introChapter(),
-      ...chapter1(),
-      ...chapter2(),
-      ...chapter3(),
-      ...conclusion(),
-      ...appendix()
-    ]
-  }]
-});
-
-Packer.toBuffer(doc).then(buffer => {
-  fs.writeFileSync('/mnt/user-data/outputs/Ebook_Do_Zero_aos_Dados.docx', buffer);
-  console.log('Done!');
-}).catch(err => {
-  console.error(err);
-  process.exit(1);
-});
-// ... continuação do apêndice
-    bullet([bold("Dashboard: "), run("Um painel visual interativo que consolida métricas e indicadores-chave de desempenho (KPIs) para monitoramento rápido e tomada de decisão.")]),
-    spacer()
-  ];
-}
-
-// ─── GERAR ARQUIVO FINAL ──────────────────────────────────────────────────────
+// ─── EXECUTION AND COMPILATION ────────────────────────────────────────────────
 const doc = new Document({
   sections: [{
     properties: {},
@@ -607,5 +501,10 @@ const doc = new Document({
 
 Packer.toBuffer(doc).then((buffer) => {
   fs.writeFileSync("Do_Zero_Aos_Dados.docx", buffer);
-  console.log("E-book e Guia gerados com sucesso!");
+  console.log("=========================================");
+  console.log("¡Sucesso! O e-book completo com o seu");
+  console.log("Miniguia foi gerado em 'Do_Zero_Aos_Dados.docx'");
+  console.log("=========================================");
+}).catch((err) => {
+  console.error("Erro ao gerar o documento:", err);
 });
